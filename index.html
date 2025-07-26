@@ -1,36 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Countdown to Hugs, Maa!</title>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap" rel="stylesheet" />
   <style>
+    * {
+      box-sizing: border-box;
+    }
+
     body {
       margin: 0;
       font-family: 'Patrick Hand', cursive;
       background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
       color: #fff;
       text-align: center;
-      overflow: hidden;
+      overflow-x: hidden;
     }
+
     h1 {
-      font-size: 2.5rem;
-      margin-top: 60px;
+      font-size: 2.2rem;
+      margin: 60px 20px 10px;
       z-index: 1;
       position: relative;
     }
+
+    p {
+      font-size: 1rem;
+      color: #ccc;
+      margin: 0 20px;
+    }
+
     .cloud {
       position: absolute;
       width: 150px;
       opacity: 0.2;
       animation: float linear infinite;
     }
+
     @keyframes float {
-      0% { left: -200px; }
-      100% { left: 110vw; }
+      0% {
+        left: -200px;
+      }
+      100% {
+        left: 110vw;
+      }
     }
+
     .clouds-container {
       position: absolute;
       width: 100%;
@@ -39,91 +57,133 @@
       left: 0;
       z-index: 0;
     }
+
     .clouds-container img:nth-child(odd) {
       animation-duration: 20s;
     }
+
     .clouds-container img:nth-child(even) {
       animation-duration: 30s;
     }
+
     .stars {
       position: absolute;
-      width: 2px;
-      height: 2px;
       background: white;
       border-radius: 50%;
       animation: twinkle 2s infinite ease-in-out alternate;
     }
+
     @keyframes twinkle {
-      from { opacity: 0.3; }
-      to { opacity: 1; }
+      from {
+        opacity: 0.3;
+      }
+      to {
+        opacity: 1;
+      }
     }
+
     .countdown {
       display: flex;
       flex-direction: column;
       align-items: center;
-      margin-top: 40px;
+      margin-top: 30px;
       gap: 20px;
       z-index: 1;
       position: relative;
+      padding: 0 10px;
     }
+
     .timer-box {
       background: rgba(255, 255, 255, 0.05);
       border-radius: 15px;
-      padding: 20px;
-      width: fit-content;
+      padding: 15px;
+      width: 100%;
+      max-width: 300px;
       box-shadow: 0 4px 20px rgba(255, 255, 255, 0.08);
-      font-size: 1.8rem;
     }
+
     .timer-label {
       font-weight: bold;
-      font-size: 1.5rem;
+      font-size: 1.3rem;
       margin-bottom: 5px;
     }
+
     .time {
       font-family: 'Orbitron', monospace;
-      letter-spacing: 2px;
-      font-size: 2rem;
+      letter-spacing: 1px;
+      font-size: 1.5rem;
       background: #1c1c1ccc;
       border: 2px solid #ffb6c1;
       border-radius: 8px;
-      padding: 10px 20px;
-      display: inline-block;
+      padding: 10px 15px;
       color: #ffb6c1;
       text-shadow: 0 0 6px #ffb6c1;
     }
+
     .hug-animation {
       margin-top: 40px;
       z-index: 1;
       position: relative;
       animation: bounce 4s infinite ease-in-out;
     }
+
     .hug-animation img {
-      width: 120px;
+      width: 100px;
+      max-width: 80%;
     }
+
     @keyframes bounce {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-10px); }
+      0%,
+      100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-10px);
+      }
     }
+
     .photo-gallery {
       margin-top: 50px;
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 20px;
-      padding: 0 20px;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 15px;
+      padding: 0 15px;
       z-index: 1;
       position: relative;
     }
+
     .photo-gallery img {
       width: 100%;
       border-radius: 20px;
-      box-shadow: 0 4px 12px rgba(255,255,255,0.1);
+      box-shadow: 0 4px 12px rgba(255, 255, 255, 0.1);
     }
+
     footer {
-      margin-top: 60px;
-      font-size: 1.2rem;
+      margin: 40px 20px;
+      font-size: 1rem;
       color: #aaa;
       z-index: 1;
       position: relative;
+    }
+
+    @media (max-width: 480px) {
+      h1 {
+        font-size: 1.8rem;
+        margin-top: 40px;
+      }
+
+      .timer-label {
+        font-size: 1.1rem;
+      }
+
+      .time {
+        font-size: 1.3rem;
+        padding: 8px 10px;
+      }
+
+      .hug-animation img {
+        width: 80px;
+      }
     }
   </style>
 </head>
@@ -137,7 +197,6 @@
     <img src="https://pngimg.com/uploads/cloud/cloud_PNG19.png" class="cloud" style="top: 240px;">
   </div>
 
-  <!-- Starfield -->
   <script>
     for (let i = 0; i < 150; i++) {
       const star = document.createElement('div');
@@ -152,7 +211,7 @@
   </script>
 
   <h1>Maa, we're coming soon! 🤗</h1>
-  <p style="font-size: 1.2rem; color: #ccc;">“Venku@Tirumala is with us”</p>
+  <p>“Venku@Tirumala is with us”</p>
 
   <div class="countdown">
     <div class="timer-box">
@@ -170,16 +229,14 @@
   </div>
 
   <div class="photo-gallery">
-    <img src="IMG-20230111-WA0430.jpg" alt="Family Pic 1">
-    <img src="IMG-20240409-WA0053.jpg" alt="Family Pic 2">
-    <img src="IMG20240113133111.jpg" alt="Family Pic 3">
-    <img src="IMG20240405234147.jpg" alt="Family Pic 4">
-    <img src="IMG20240407135202.jpg" alt="Family Pic 5">
+    <img src="IMG-20230111-WA0430.jpg" alt="Family Pic 1" />
+    <img src="IMG-20240409-WA0053.jpg" alt="Family Pic 2" />
+    <img src="IMG20240113133111.jpg" alt="Family Pic 3" />
+    <img src="IMG20240405234147.jpg" alt="Family Pic 4" />
+    <img src="IMG20240407135202.jpg" alt="Family Pic 5" />
   </div>
 
-  <footer>
-    Made with love by Munni & Jaanu 💖
-  </footer>
+  <footer>Made with love by Munni & Jaanu 💖</footer>
 
   <script>
     function updateCountdown(id, targetDate) {
@@ -200,6 +257,7 @@
 
         el.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
       }
+
       update();
       setInterval(update, 1000);
     }
